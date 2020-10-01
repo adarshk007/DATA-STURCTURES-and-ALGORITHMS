@@ -22,36 +22,59 @@ They also let you do things with the stored images, like cropping and stitching.
 Both of these objects, a bottle and a camera, can be represented as classes.
 """
 #------------------------------------------------------------------------------#
-import copy
+import time
+
 class Node:
-    def __init__(self,d):
-        self.data=d
-        self.next=None
+	def __init__(self, data=None, next=None):
+		self.data = data
+		self.next = next
+
 class LinkedList:
-    def __init__(self,head=None):
-        self.head=head
-        self.size=0 # or directly initialise with size=0 on top as a regular initialisation in a variable
-    def getsize(self):
-         print("size:",self.size,sep=" ")
-    def add(self,d):
-        node=Node(d)
-        cur=(self.head)
-        if(self.head==None):  #or self.head is None
-            self.head=node
-        else:
-            while(cur.next!= None): # or self.head is Not None
-                cur=cur.next
-            cur.next=node
-        self.size+=1
-    def printlist(self):
-        cur=self.head
-        print("Head")
-        while(cur.next is not None):
-            print(cur.data,end="--->")
-            cur=cur.next
-        print(cur.data,end="--->None\n")
-mylist=LinkedList()
-mylist.add(5)
-mylist.add(6)
-mylist.printlist()
-mylist.getsize()
+	def __init__(self):
+		self.head = None
+
+	def traverse(self):
+		printvalue = self.head
+		while printvalue is not None:
+			print(printvalue.data)
+			printvalue = printvalue.next
+
+	def insertAtBegining(self, head):
+		newNode = Node(head)
+
+		# updating the node
+		newNode.next = self.head
+		self.head = newNode
+
+	def insertAtEnd(self, newNode):
+		newNode = Node(5)
+		if self.head is None:
+			self.head = newNode
+			return
+		lastnode = self.head
+		while (lastnode.next):
+			lastnode = lastnode.next
+		lastnode.next = newNode
+
+linkedList = LinkedList()
+headNode = linkedList.head = Node(1)
+
+second = Node(2)
+# Linking the node to previous node
+headNode.next = second
+
+third = Node(3)
+# Linking the node to previous node
+second.next = third
+
+forth = Node(4)
+# Linking the node to previous node
+third.next = forth
+
+fifth = Node(5)
+# Linking the node to previous node
+forth.next = fifth
+
+sixth = Node(6)
+
+linkedList.traverse()
